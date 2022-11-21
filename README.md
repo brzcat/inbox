@@ -40,7 +40,12 @@ Portal to ethereum network
 ![alt text](images/web3-deploy-code-overview.png)
 
 #### Contract ABI Specification
-Basic Design
+##### Basic Design
 The Contract Application Binary Interface (ABI) is the standard way to interact with contracts in the Ethereum ecosystem, 
 
 ![alt text](images/web3-with-contracts.png)
+
+### Deploy Contract
+
+![alt text](images/deploy-to-test-network.png)
+

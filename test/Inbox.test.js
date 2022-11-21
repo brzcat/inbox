@@ -1,11 +1,14 @@
 const assert = require('assert');
+// local test network - auto generate some number of accounts.  Always completes transaction near real-time.
 const ganache = require('ganache-cli');
-// we are using a Constructor function (that's why its uppercase)
+// we are using a Constructor function (that's why its uppercase); how we retrieve info from ethereum network
+// needs a provider as well as account
 const Web3 = require('web3');
 
 //lower case means instance
 const web3 = new Web3(ganache.provider());
 // pulled from definition from contract.
+// abi translation network to the javascript world -- bytecode is the compiled code.
 const {interface, bytecode} = require('../compile');
 
 let testAccountsForLocalTesting;
@@ -43,6 +46,7 @@ describe('Inbox', () => {
         const newMsg = 'bye';
 
         // if this fails, promise will be rejected and Error is thrown.
+        // send -- who is going to pay.
         await inbox.methods.setMessage(newMsg).send({from: testAccountsForLocalTesting[0]});
         const actual = await inbox.methods.message().call();
         assert.equal(actual, newMsg);
