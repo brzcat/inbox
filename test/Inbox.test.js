@@ -9,7 +9,7 @@ const Web3 = require('web3');
 const web3 = new Web3(ganache.provider());
 // pulled from definition from contract.
 // abi translation network to the javascript world -- bytecode is the compiled code.
-const {interface, bytecode} = require('../compile');
+const { abi, evm } = require('../compile');
 
 let testAccountsForLocalTesting;
 let inbox;
@@ -19,16 +19,12 @@ beforeEach(async () => {
     testAccountsForLocalTesting = await web3.eth.getAccounts();
     // Use one of those accounts to deploy the contract
     // constructor ; remember when we modify blockchain, we need to pay some gas
-    inbox = await new web3.eth.Contract(JSON.parse(interface))
+    inbox = await new web3.eth.Contract(abi)
         .deploy({
-            data: bytecode,
-            arguments: [initialString]
+            data: evm.bytecode.object,
+            arguments: ['Hi there!'],
         })
-        .send({
-            from: testAccountsForLocalTesting[0],
-            gas: '1000000'
-        });
-
+        .send({ from: testAccountsForLocalTesting[0], gas: '1000000' });
 });
 
 describe('Inbox', () => {
