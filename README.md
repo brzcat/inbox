@@ -49,3 +49,8 @@ The Contract Application Binary Interface (ABI) is the standard way to interact 
 
 ![alt text](images/deploy-to-test-network.png)
 
+### Basic types
+![alt text](images/solidity-basic-types.png)
+
+### Reference types
+![alt text](images/refernce-types.png)
